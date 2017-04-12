@@ -1,0 +1,7 @@
+#!/bin/sh
+
+/usr/bin/printf "Waiting for EncFS to unmount before unmounting ACD\n"
+/bin/s6-svwait -d /etc/services.d/encfs
+
+/usr/bin/printf "Unmounting ACD\n"
+/usr/bin/acd_cli umount

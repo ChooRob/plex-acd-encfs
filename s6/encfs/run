@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv sh
+
+/usr/bin/printf "Creating EncFS mount target\n"
+/bin/mkdir -p /mnt/acd
+
+#/usr/bin/printf "Waiting for ACD to mount\n"
+/bin/s6-svwait -U /etc/services.d/acd_cli
+/bin/sleep 10
+
+/usr/bin/printf "Mounting EncFS\n"
+/usr/bin/encfs \
+        --extpass="/bin/cat /etc/.ENCFS_PASSWORD" \
+	-f \
+	--public \
+        -o uid=1000,gid=1000,allow_other \
+	/mnt/.acd/Share \
+	/mnt/acd
