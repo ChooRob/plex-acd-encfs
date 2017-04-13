@@ -35,7 +35,7 @@ RUN \
 
 ADD ./s6 /etc/services.d
 
-RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
+RUN pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git
 
 RUN echo "user_allow_other" >> /etc/fuse.conf
 
